@@ -1,0 +1,52 @@
+<div>
+    <div class="px-5 contai_nav shadow">
+        <nav class="navbar navbar-expand-lg  ">
+            <div class="container-fluid d-flex justify-content-between  ">
+                <div>
+                    <a class="navbar-brand" href="#">2VOI</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>   
+                </div>
+                <div class="" id="navbarNavDropdown ">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Service prices</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container w-75 my-5">
+        <div class="d-flex justify-content-between px-3 py-2 title_input">
+            <div>
+                <h6>text-to-speech</h6>
+            </div>
+            <div>
+                <span>0</span>
+                <span>/</span>
+                <span>500</span>
+            </div>
+        </div>
+        <div class="bg-light ">
+            <textarea class="w-100 p-3" id="text" rows="10" placeholder="enter text..."></textarea>
+        </div>
+        <div class="p-3 bg-light d-flex justify-content-between shadow">
+            <div>
+                <select class="form-control" id="voiceId">
+                    <option value="vi-VN-Standard-A">Female 1</option>
+                    <option value="vi-VN-Standard-B">Male 1</option>
+                    <option value="vi-VN-Standard-C">Female 2</option>
+                    <option value="vi-VN-Standard-D">Male 2</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" id="convert" class="btn btn-info convert">Convert</button>
+            </div>
+        </div>
+    </div>
+</div>
