@@ -8,9 +8,10 @@ const fs = require('fs');
 const util = require('util');
 const cron = require('node-cron');
 const { IndexRouter } = require('./src/routers');
+const {deleteFile, handleDate} = require('./src/config/handleFile')
 
-cron.schedule('* * 23 * * *', () => {
-   console.log('running a task every minute');
+cron.schedule('0 0 */8 * * *', () => {
+   deleteFile('./voices')
  });
  
 
@@ -29,3 +30,7 @@ app.get("/", (req, res) => {
 })
 app.use('/', IndexRouter)
 app.listen(3010, () => console.log("http://localhost:3010"))
+
+
+
+
