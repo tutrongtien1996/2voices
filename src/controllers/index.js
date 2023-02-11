@@ -1,5 +1,6 @@
 const {indexModel} = require('../model/index')
 const {responseResult} = require('../config/response')
+const { OpenAI } = require('../services/OpenAI')
 
 const indexController = {
     convert: async (req, res) => {
@@ -19,7 +20,16 @@ const indexController = {
             return res.send(responseResult.success({"file_name": fileName}))
         }
         return res.send({})
-     }
+    },
+
+    generate: async (req, res) => {
+        let prompt = req.body.prompt
+        if(prompt == false){
+            return res.send(responseResult.unsuccess("failed"))
+        } 
+        let answer = await OpenAI.ask(prompt)
+        return res.send(responseResult.success({"answer": answer}))
+    }
 }
 
 module.exports = {indexController}
