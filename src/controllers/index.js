@@ -23,11 +23,11 @@ const indexController = {
     },
 
     generate: async (req, res) => {
-        let prompt = req.body.prompt
-        if(prompt == false){
+        let question = req.body.prompt
+        if(question == false){
             return res.send(responseResult.unsuccess("failed"))
         } 
-        let answer = await OpenAI.ask(prompt)
+        let answer = await OpenAI.ask(question)
         return res.send(responseResult.success({"answer": answer}))
     }
 }

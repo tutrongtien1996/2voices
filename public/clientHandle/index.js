@@ -33,9 +33,7 @@ askAIButton.onclick = async () => {
     if (textPrompt.value.length <= 0) {
         return;
     }
-    let result = await Repository.askAI({
-        prompt: textPrompt.value, 
-    })
+    let result = await Repository.askAI(textPrompt.value)
     if(result){
         resetButton(0)
         if (result.answer == "") {

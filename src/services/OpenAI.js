@@ -1,25 +1,27 @@
-
-const { Configuration, OpenAIApi } = require("openai");
 require('dotenv').config()
+const axios = require("axios")
+const URL_AI = "https://api.openai.com/v1/completions"
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
 
 const OpenAI = {
-    ask: async (prompt) => {
+    ask: async (question) => {
         try {
-            const response = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: prompt,
-                max_tokens: 1000,
-                stop: ["\n"],
-            });
-            return (response.data.choices[0].text);
-        } catch (error) {
-            return ""
-        }
+            let response = await  axios.post(
+                URL_AI, 
+                {
+                    model: "text-davinci-003",
+                    prompt: question,
+                    max_tokens: 1000,
+                }, 
+                {
+                    headers: {
+                        Authorization: "Bearer "+ process.env.OPENAI_API_KEY
+                    }
+                });
+                return response.data.choices[0].text;
+            } catch (er) {
+                return "";
+            }
     }
 }
 
