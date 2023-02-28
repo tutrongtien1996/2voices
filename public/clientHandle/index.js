@@ -83,7 +83,7 @@ playtBtn.onclick = () => {
 
 const Repository = {
     convert: async (input) => {
-        let result =  await axios.post('http://localhost:3010/convert', input)
+        let result =  await axios.post('/convert', input)
             .then(function (response) {
                 return response.data.data
             })
@@ -93,7 +93,7 @@ const Repository = {
         return result
     },
     askAI: async (prompt) => {
-        let result =  await axios.post('http://localhost:3010/generate', {prompt: prompt})
+        let result =  await axios.post('/generate', {prompt: prompt})
             .then(function (response) {
                 return response.data.data
             })
