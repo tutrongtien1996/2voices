@@ -9,7 +9,7 @@ const indexController = {
             voiceId: req.body.voiceId,
             text: req.body.text
         }
-        if(input.text.length > 1000){
+        if(input.text.length > 10000){
             return res.send(responseResult.unsuccess("max length < 1001"))
         }
         if(input.text.length < 1){
