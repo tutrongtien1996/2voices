@@ -2,3 +2,4 @@ auth_key.json
 node_modules/
 converter.js
 voices/
+.env
