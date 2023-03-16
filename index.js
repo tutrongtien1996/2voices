@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
    res.render("home")
 })
 app.use('/', IndexRouter)
-app.listen(3010, () => console.log("http://localhost:3010"))
+app.listen(3013, () => console.log("http://localhost:3013"))
 
 
 

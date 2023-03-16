@@ -1,25 +1,2 @@
-.contai_nav {
-  background-color: #0f171c; }
-
-body {
-  background-color: #d6d6d6; }
-
-.title_input {
-  background-color: #e9dda5;
-  border-top: 1px solid dimgray;
-  border-right: 1px solid dimgray;
-  border-left: 1px solid dimgray; }
-
-#text {
-  outline: none; }
-
-#download {
-  background-color: #787878;
-  color: black;
-  text-decoration: none;
-  padding: 9px;
-  padding-bottom: 10px;
-  border-radius: 4px; }
-
-#download:hover {
-  background-color: #8c8c8c; }
+.contai_body {
+  background-color: var(#d6d6d6); }
