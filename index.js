@@ -8,6 +8,7 @@ const fs = require('fs');
 const util = require('util');
 const cron = require('node-cron');
 const { IndexRouter } = require('./src/routers');
+const { CovertTextRouter } = require('./src_API/router/convertText');
 const {deleteFile, handleDate} = require('./src/config/handleFile')
 
 cron.schedule('0 0 */8 * * *', () => {
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
    res.render("home")
 })
 app.use('/', IndexRouter)
+app.use('/api', CovertTextRouter)
 app.listen(3013, () => console.log("http://localhost:3013"))
 
 

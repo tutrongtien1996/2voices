@@ -1,5 +1,157 @@
 @import 'variables';
 
+* {
+    box-sizing: border-box;
+}
+
+
 .contai_body {
+    box-sizing: border-box;
     background-color: var($body-color)
+}
+
+//css content
+
+.contai_content{
+    box-sizing: border-box;
+    width: calc(100% - 280px);
+    height: 100vh;
+    transition: width 0.2s linear;
+    background-color: rgb(232, 231, 231);
+    overflow-y: scroll;
+}
+.contai_content_full {
+    transition: width  0.2s linear;
+    width: 100%;
+}
+.contai_content_full .top_content{
+    margin-left: 50px ;
+}
+.contai_content .top_content input {
+    width: 100px !important;
+    background-color: red !important;
+}
+.contai_content_full .icon_bar{
+    box-sizing: border-box;
+    display: block !important;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    background-color: rgb(245, 245, 245);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.contai_content  .categories_voices {
+    list-style-type: none;
+}
+.contai_content .text_input{
+    box-sizing: border-box;
+}
+
+.contai_content thead tr {
+    color: white;
+    background-color: $trademark;
+}
+.contai_content .contai_table {
+    padding: 10px;
+    background-color: white;
+    overflow-x: scroll;
+}
+.contai_content .contai_table table{
+    width: 100% !important;
+}
+.contai_content .contai_table tr {
+    padding: 15px !important;
+}
+.contai_content .contai_table .col_title {
+    width: calc(100% - 600px);
+    min-width: 400px;
+}
+.contai_content .contai_table .col_chars {
+    width: 80px;
+}
+.contai_content .contai_table .col_date {
+    width: 150px;
+}
+.contai_content .contai_table .col_status {
+    width: 100px;
+}
+.contai_content .contai_table .col_voices {
+    width: 140px;
+}
+.contai_content .contai_table .col_action {
+    width: 130px;
+}
+.contai_content .contai_table tbody tr:hover {
+    background-color: rgb(194, 250, 250);
+}
+
+.filter_check > div {
+    min-width: 140px;
+    max-width: 160px;
+    box-sizing: border-box;
+}
+.filter_check div div {
+    border: 1px solid rgb(146, 146, 146);
+    border-radius: 3px;
+    padding: 5px;
+  
+}
+.filter_check div div:hover {
+    border: 1px solid rgb(0, 0, 0);
+
+}
+.filter_check div div:focus-within{
+    border: 2px solid $trademark;
+}
+.filter_check div div input {
+    outline: none; 
+    border:none
+}
+.filter_check div input {
+    max-width: 140px;
+    background-color: transparent;
+}
+
+.contai_content .croll_audio{
+    width: 0px;
+    transition: width 10s;
+}
+
+
+//END CSS CONTENT 
+
+
+
+// css menu nav
+.contai_nav {
+    width: 280px;
+    transition: width 0.2s linear;
+
+}
+.contai_nav_hide {
+    display: none;
+    padding: 0px !important;
+    width: 0px;
+    transition: width 0.2s linear;
+}
+.logo{
+    color: $trademark;
+}
+.contai_nav ul li {
+    cursor: pointer;
+}
+
+.contai_nav ul li.active_nav {
+    color: white;
+    background-color: $trademark;
+}
+.contai_nav ul li:hover {
+    background-color: rgb(156, 240, 240);
+}
+
+.contai_nav_hide .icon_toggle{
+    display: none;
 }

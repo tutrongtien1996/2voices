@@ -4,7 +4,7 @@ let downloadBtn = document.querySelector("#download");
 let text = document.querySelector("#text");
 let textPrompt = document.querySelector("#text-prompt");
 let audioElement = document.querySelector("#myAudio");
-let voiceSelector = document.querySelector("#voiceId");
+// let voiceSelector = document.querySelector("#voiceId");
 let askAIButton = document.querySelector("#askAI");
 
 convertBtn.disabled = true
@@ -17,7 +17,7 @@ audioElement.onended = () => {
 }
 
 convertBtn.onclick = async () => {
-    resetButton(1)
+    // resetButton(1)
     let result = await Repository.convert({
         text: text.value, 
         voiceId: voiceSelector.value
