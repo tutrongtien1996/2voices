@@ -1,25 +1,39 @@
 const {ConvertTextModel} = require('../model/convertText')
-const {responseResult} = require('../../src/config/response')
+const { ResponseSuccess, ResponseFail } = require('../../helper/response')
+const { v4: uuidv4 } = require('uuid');
+
 // const { OpenAI } = require('../services/OpenAI')
 
 const ConvertTextController = {
     convert: async (req, res) => {
         let voices = ['vi-VN-Standard-A', 'vi-VN-Standard-B', 'vi-VN-Standard-C', 'vi-VN-Standard-D']
         let input = {
+            id: uuidv4(),
+            user_id: req.user.user_id,
             voiceId: req.body.voiceId,
-            text: req.body.text
+            content: req.body.text,
+            title: req.body.title,
+            number_chars: req.body.text.length,
+            volumn: req.body.volumn,
+            speed: req.body.speed
         }
-        if(input.text.length > 10000){
-            return res.send(responseResult.unsuccess("max length < 1001"))
+        if(input.content.length > 3000){
+            return ResponseFail(res, "max length < 3000")
         }
-        if(input.text.length < 1){
-            return res.send(responseResult.unsuccess("min length > 0"))
+        if(input.content.length < 1){
+            return ResponseFail(res, "min length > 0")
         }
         if(voices.includes(input.voiceId)){
-            let fileName = await ConvertTextModel.convert(input)
-            return res.send(responseResult.success({"file_name": fileName}))
+            if(input.title.length == 0){
+                input.title = input.content.slice(0, 30);
+            }
+            let data = await ConvertTextModel.convert(input);
+            if(data == null){
+                return ResponseFail(res, "convert is unsuccess!")
+            }
+            return ResponseSuccess(res,"", data)
         }
-        return res.send(responseResult.unsuccess("request not accept"))
+        return ResponseFail(res, "request not accept")
     },
 
     // generate: async (req, res) => {

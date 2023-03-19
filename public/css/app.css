@@ -20,10 +20,6 @@
 .contai_content_full .top_content {
   margin-left: 50px; }
 
-.contai_content .top_content input {
-  width: 100px !important;
-  background-color: red !important; }
-
 .contai_content_full .icon_bar {
   box-sizing: border-box;
   display: block !important;
@@ -57,8 +53,8 @@
   padding: 15px !important; }
 
 .contai_content .contai_table .col_title {
-  width: calc(100% - 600px);
-  min-width: 400px; }
+  width: calc(100% - 650px);
+  min-width: 320px; }
 
 .contai_content .contai_table .col_chars {
   width: 80px; }

@@ -1,10 +1,8 @@
 let hide = document.querySelector(".icon_arrow");
 let show = document.querySelector(".icon_bar");
-let voicesActive = document.querySelector(".contai_content .categories_voices  li.active")
-let listVoices = document.querySelectorAll(".contai_content .categories_voices  li")
+
 hideNav()
 showNav()
-showCategoriesVoices()
 showBoxTextAI()
 hideBoxTextAI()
 
@@ -25,28 +23,7 @@ function showNav(){
     }
 }
 
-function showCategoriesVoices(){
-    voicesActive.onclick = () => {
-        Array.from(listVoices).forEach( element => {
-            element.classList.remove("d-none")
-        })
-        getVoices()
-    }
-}
-function getVoices(){
-    Array.from(listVoices).forEach( element => {
-        element.onclick = () => {
-            voicesActive.classList.remove("active");
-            element.classList.add("active");
-            voicesActive = element;
-            Array.from(listVoices).forEach(item => {
-                item.classList.add("d-none")
-                voicesActive.classList.remove("d-none")
-            })
-            showCategoriesVoices()
-        }
-    })
-}
+
 
 function showBoxTextAI(){
     let btnAI = document.querySelector(".btn_use_ai")
