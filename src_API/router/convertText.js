@@ -7,6 +7,5 @@ const CovertTextRouter = express.Router();
 
 
 CovertTextRouter.post("/", isAuth, ConvertTextController.convert)
-// IndexRouter.post("/generate", indexController.generate)
 
 module.exports = {CovertTextRouter}

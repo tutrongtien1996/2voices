@@ -112,9 +112,17 @@
     background-color: transparent;
 }
 
+.col_action li {
+    cursor: pointer;
+}
+
 .contai_content .croll_audio{
     width: 0px;
     transition: width 10s;
+}
+
+audio::-webkit-media-controls-panel{
+    background-color: rgb(232, 231, 231)
 }
 
 
@@ -152,3 +160,30 @@
 .contai_nav_hide .icon_toggle{
     display: none;
 }
+
+
+
+//popup 
+
+.popup_view {
+    width: 100% !important;
+    margin: auto;
+}
+
+.contai_header {
+    border: none !important;
+}
+
+.top_popup {
+    background-color: $trademark;
+}
+
+.close_popup {
+    position: absolute;
+    top: 10px;
+    left: 100%;
+    transform: translateX(-200%);
+}
+ul {
+    list-style-type: none;
+  }

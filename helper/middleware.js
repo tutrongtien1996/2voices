@@ -8,6 +8,7 @@ const AuthMiddle = {
     // Lấy access token từ header
         const accessTokenFromHeader = req.headers.authorization;
         if (!accessTokenFromHeader) {
+            console.log("da vao")
             return ResponseFail(res, "token not exits")
         }
         const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
@@ -16,7 +17,7 @@ const AuthMiddle = {
             accessTokenFromHeader,
             accessTokenSecret,
         );
-        if (!verified) return ResponseSuccess(res, "you can not connect link!")
+        if (!verified) return ResponseFail(res, "you can not connect link!")
 
         const users = await AuthModel.getUser(verified.payload.username);
         req.user = users[0];

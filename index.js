@@ -8,8 +8,6 @@ const app = express();
 const fs = require('fs');
 const util = require('util');
 const cron = require('node-cron');
-const { IndexRouter } = require('./src/routers');
-const { CovertTextRouter } = require('./src_API/router/convertText');
 const {deleteFile, handleDate} = require('./src/config/handleFile');
 const { _initRouteAPI } = require('./src_API/router/init');
 
@@ -32,7 +30,7 @@ app.use('/voices', express.static('voices'))
 app.get("/", (req, res) => {
    res.render("home")
 })
-app.use('/', IndexRouter)
+// app.use('/', IndexRouter)
 _initRouteAPI(app)
 app.listen(3013, () => console.log("http://localhost:3013"))
 
