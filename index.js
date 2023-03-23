@@ -11,7 +11,7 @@ const cron = require('node-cron');
 const {deleteFile, handleDate} = require('./src/config/handleFile');
 const { _initRouteAPI } = require('./src_API/router/init');
 
-cron.schedule('0 0 */8 * * *', () => {
+cron.schedule('0 0 */1 * * *', () => {
    deleteFile('./voices')
  });
  

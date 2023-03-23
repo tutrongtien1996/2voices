@@ -1,6 +1,5 @@
 const {TextDetailModel} = require('../model/textDetail')
 const { ResponseSuccess, ResponseFail } = require('../../helper/response')
-const { v4: uuidv4 } = require('uuid');
 const TextDetailController = {
     list: async (req, res) => {
         let results = await TextDetailModel.list(req.user);
