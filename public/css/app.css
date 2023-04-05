@@ -152,3 +152,28 @@ audio::-webkit-media-controls-panel {
 
 ul {
   list-style-type: none; }
+
+.login_content_form {
+  width: 375px;
+  padding: 20px;
+  border-radius: 5px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.login_body {
+  background-color: #00bcd4; }
+
+.login_body h2 {
+  color: #00bcd4; }
+
+.login_body .submit {
+  background-color: #00bcd4; }
+
+.login_body .submit:hover {
+  background-color: #0ad0d0;
+  color: white; }
+
+.login_body .submit_outline:hover {
+  color: white; }

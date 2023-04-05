@@ -17,9 +17,15 @@ async function renderVoices(){
         results.data.forEach(item => { 
             html += `<li class="d-none" id="${item.id}"  role="button">${item.name}</li>` 
         });
-        document.querySelector(".categories_voices").innerHTML = html;
-        document.querySelector(".categories_voices li:first-child").classList.remove("d-none");
-        document.querySelector(".categories_voices li:first-child").classList.add("active");
+        let categories_voices = document.querySelector(".categories_voices");
+        let categories_voices_first = document.querySelector(".categories_voices li:first-child");
+        if(categories_voices){
+            categories_voices.innerHTML = html;
+        }
+        if(categories_voices_first){
+            categories_voices_first.classList.remove("d-none");
+            categories_voices_first.classList.add("active");
+        }
         showCategoriesVoices()
     }
 }
@@ -27,11 +33,13 @@ async function renderVoices(){
 function showCategoriesVoices(){
     let voicesActive = document.querySelector(".contai_content .categories_voices  li.active")
     let listVoices = document.querySelectorAll(".contai_content .categories_voices  li")
-    voicesActive.onclick = () => {
-        Array.from(listVoices).forEach( element => {
-            element.classList.remove("d-none")
-        })
-        getVoices()
+    if(voicesActive){
+        voicesActive.onclick = () => {
+            Array.from(listVoices).forEach( element => {
+                element.classList.remove("d-none")
+            })
+            getVoices()
+        }
     }
 }
 function getVoices(){

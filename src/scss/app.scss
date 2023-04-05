@@ -187,3 +187,30 @@ audio::-webkit-media-controls-panel{
 ul {
     list-style-type: none;
   }
+
+  //auth css
+  .login_content_form {
+    width: 375px;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .login_body {
+    background-color: $trademark;
+  }
+  .login_body h2 {
+    color: $trademark;
+  }
+  .login_body .submit {
+    background-color: $trademark;
+  }
+  .login_body .submit:hover {
+    background-color: rgb(10, 208, 208);
+    color: white;
+  }
+  .login_body .submit_outline:hover{
+    color: white;
+  }

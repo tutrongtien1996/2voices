@@ -20,22 +20,25 @@ async function getListVoices(){
     return result
 }
 
-convertBtn.disabled = true
-text.onkeyup = () => { resetButton(0) }
-text.onchange = () => { resetButton(0) }
-
-convertBtn.onclick = async () => {
-    let voiceSelector = document.querySelector(".categories_voices .active");
-    resetButton(1)
-    let result = await Repository.convert({
-        title: title.value,
-        text: text.value, 
-        voiceId: voiceSelector.id
-    })
-    if(await result.success){
-        await addlistSpeech(result)
+if(convertBtn){
+    convertBtn.disabled = true
+    text.onkeyup = () => { resetButton(0) }
+    text.onchange = () => { resetButton(0) }
+    
+    convertBtn.onclick = async () => {
+        let voiceSelector = document.querySelector(".categories_voices .active");
+        resetButton(1)
+        let result = await Repository.convert({
+            title: title.value,
+            text: text.value, 
+            voiceId: voiceSelector.id
+        })
+        if(await result.success){
+            await addlistSpeech(result)
+        }
     }
 }
+
 
 if(askAIButton){
     askAIButton.onclick = async () => {

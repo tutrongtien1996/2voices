@@ -1,0 +1,51 @@
+<div class="login_body vw-100 vh-100">
+    <div class="login_content_form bg-light">
+        <form class="form_signup" action="/auth/login" method="post">
+            <div><h2>Đăng nhập<pre></pre></h2></div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email </label>
+                <input type="" class="form-control shadow-none" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" value="1313123123">
+            </div>
+            <div class="mb-5">
+                <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control shadow-none" name="password" id="exampleInputPassword1" value="dcscscsc">
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn submit text-light">Đăng Nhập</button>
+                <span id="sign_in_transform" class="btn submit_outline btn-outline-info">Đăng Ký</span>
+            </div>
+        </form>
+         {{!-- <form class="form_signin d-none" action="#" method="post">
+            <div><h2>Đăng ký<pre></pre></h2></div>
+            <div class="mb-3">
+                <label for="exampleInputEmail2" class="form-label">Email </label>
+                <input type="email" class="form-control shadow-none" name="username" id="exampleInputEmail2" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-5">
+                <label for="exampleInputPassword2" class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control shadow-none" name="password" id="exampleInputPassword2">
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn submit text-light">Đăng Ký</button>
+                <span  id="sign_up_transform"  class="btn submit_outline btn-outline-info">Đăng Nhập</span>
+            </div>
+        </form> --}}
+    </div>
+</div>
+<script>
+    let sign_in_element = document.querySelector("#sign_in_transform");
+    if(sign_in_element){
+        sign_in_element.onclick = () => {
+            document.querySelector(".form_signup").classList.add("d-none");
+            document.querySelector(".form_signin").classList.remove("d-none");
+        }
+    }
+    let sign_up_element = document.querySelector("#sign_up_transform");
+    if(sign_up_element){
+        sign_up_element.onclick = () => {
+            document.querySelector(".form_signin").classList.add("d-none");
+            document.querySelector(".form_signup").classList.remove("d-none");
+        }
+    }
+
+</script>

@@ -10,6 +10,11 @@ const util = require('util');
 const cron = require('node-cron');
 const {deleteFile, handleDate} = require('./src/config/handleFile');
 const { _initRouteAPI } = require('./src_API/router/init');
+const { _initRoute } = require('./src/router/init');
+const dotenv = require('dotenv').config();
+
+const port = dotenv.parsed.APP_PORT;
+
 
 cron.schedule('0 0 */1 * * *', () => {
    deleteFile('./voices')
@@ -17,6 +22,7 @@ cron.schedule('0 0 */1 * * *', () => {
  
 app.use(cors())
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}));
 app.engine('hbs', engine({
    extname: ".hbs"
 }));
@@ -31,8 +37,9 @@ app.get("/", (req, res) => {
    res.render("home")
 })
 // app.use('/', IndexRouter)
+_initRoute(app)
 _initRouteAPI(app)
-app.listen(3013, () => console.log("http://localhost:3013"))
+app.listen(port, () => console.log("http://localhost:3013"))
 
 
 

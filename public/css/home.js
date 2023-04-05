@@ -26,15 +26,21 @@ function showNav(){
 
 
 function showBoxTextAI(){
-    let btnAI = document.querySelector(".btn_use_ai")
-    btnAI.onclick = () => {
-        document.querySelector(".contai_ai").classList.remove("d-none")
+    let btnAI = document.querySelector(".btn_use_ai");
+    if(btnAI){
+
+        btnAI.onclick = () => {
+            document.querySelector(".contai_ai").classList.remove("d-none")
+        }
     }
 }
 function hideBoxTextAI(){
     let hideAI = document.querySelector(".hide_AI");
-    hideAI.onclick = () => {
-        document.querySelector(".contai_ai").classList.add("d-none");
+    if(hideAI){
+
+        hideAI.onclick = () => {
+            document.querySelector(".contai_ai").classList.add("d-none");
+        }
     }
 }
 
