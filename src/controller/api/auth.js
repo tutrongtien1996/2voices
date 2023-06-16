@@ -1,14 +1,12 @@
-const {AuthModel} = require('../model/Auth')
-const {ResponseSuccess, ResponseFail} = require('../../../helper/response')
-const {jwtHandle} = require('../../../helper/handlePackage')
+const {AuthModel} = require('../../model/Auth')
+const {jwtHandle} = require('../../helper/handlePackage')
 const randtoken = require('rand-token')
 const { v4: uuidv4 } = require('uuid');
 const dotenv = require('dotenv').config();
 
 const bcrypt = require('bcrypt');
+const { ResponseFail, ResponseSuccess } = require('../../helper/response');
 const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
 
 
 const AuthAPIController = {
@@ -71,70 +69,66 @@ const AuthAPIController = {
             refreshToken = user.refreshToken;
         }
     
-        return !req.isServer ? ResponseSuccess(res, "", {
-            accessToken,
-            refreshToken,
-            user
-        }) : {
+        return  {
             value: true,
             accessToken,
             refreshToken,
             user
         }
     },
-    // refreshToken: async (req, res) => {
-    //     // Lấy access token từ header
-    //     const accessTokenFromHeader = req.headers.authorization;
-    //     if (!accessTokenFromHeader) {
-    //         return ResponseFail(res, "token not's exist!")
-    //     }
+    refreshToken: async (req, res) => {
+        // Lấy access token từ header
+        const accessTokenFromHeader = req.headers.authorization;
+        if (!accessTokenFromHeader) {
+            return ResponseFail(res, "token not's exist!")
+        }
     
-    //     // Lấy refresh token từ body
-    //     const refreshTokenFromBody = req.body.refreshToken;
-    //     if (!refreshTokenFromBody) {
-    //         return  ResponseFail(res, "token not's exist!")
-    //     }
+        // Lấy refresh token từ body
+        const refreshTokenFromBody = req.body.refreshToken;
+        if (!refreshTokenFromBody) {
+            return  ResponseFail(res, "token not's exist!")
+        }
     
-    //     const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || jwtVariable.accessTokenSecret;
-    //     const accessTokenLife = process.env.ACCESS_TOKEN_LIFE || jwtVariable.accessTokenLife;
+        const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || jwtVariable.accessTokenSecret;
+        const accessTokenLife = process.env.ACCESS_TOKEN_LIFE || jwtVariable.accessTokenLife;
     
-    //     // Decode access token đó
-    //     const decoded = await jwtHandle.decodeToken(
-    //         accessTokenFromHeader,
-    //         accessTokenSecret,
-    //     );
-    //     if (!decoded) {
-    //         return ResponseFail(res, "access token is error!")
-    //     }
+        // Decode access token đó
+        const decoded = await jwtHandle.decodeToken(
+            accessTokenFromHeader,
+            accessTokenSecret,
+        );
+        if (!decoded) {
+            return ResponseFail(res, "access token is error!")
+        }
     
-    //     const username = decoded.payload.username; // Lấy username từ payload
+        const username = decoded.payload.username; // Lấy username từ payload
     
-    //     const users = await AuthModel.getUser(username);
-    //     let user = users[0]
-    //     if (!user) {
-    //         return ResponseFail(res, "user is not exist!")
-    //     }
+        const users = await AuthModel.getUser(username);
+        let user = users[0]
+        if (!user) {
+            return ResponseFail(res, "user is not exist!")
+        }
     
-    //     if (refreshTokenFromBody !== user.refreshToken) {
-    //         return ResponseFail(res, "refreshTokenFromBody is error!")
-    //     }
+        if (refreshTokenFromBody !== user.refreshToken) {
+            return ResponseFail(res, "refreshTokenFromBody is error!")
+        }
     
-    //     // Tạo access token mới
-    //     const dataForAccessToken = {
-    //         username
-    //     };
+        // Tạo access token mới
+        const dataForAccessToken = {
+            username
+        };
     
-    //     const accessToken = await jwtHandle.generateToken(
-    //         dataForAccessToken,
-    //         accessTokenSecret,
-    //         accessTokenLife,
-    //     );
+        const accessToken = await jwtHandle.generateToken(
+            dataForAccessToken,
+            accessTokenSecret,
+            accessTokenLife,
+        );
         
-    //     if (!accessToken) {
-    //         return ResponseFail(res, "create acces token is unsuccess")
-    //     }
-    //     return ResponseSuccess(res, "", accessToken);
-    // }
+        if (!accessToken) {
+            return ResponseFail(res, "create acces token is unsuccess")
+        }
+        return ResponseSuccess(res, "", accessToken);
+    }
 }
 
 

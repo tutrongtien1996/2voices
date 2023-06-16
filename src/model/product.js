@@ -1,6 +1,6 @@
-const { db } = require('../../common/connectDB');
+const { db } = require('../common/connectDB');
 
-const TextDetailModel = {
+const ProctModel = {
     list: async (input) => {
         try {
             let results = db('text_details').select('*').where('user_id', input.user_id);
@@ -11,4 +11,4 @@ const TextDetailModel = {
     }
 }
 
-module.exports = {TextDetailModel}
+module.exports = {ProctModel}

@@ -10,9 +10,9 @@ const fs = require('fs');
 const util = require('util');
 const cron = require('node-cron');
 const {deleteFile, handleDate} = require('./src/config/handleFile');
-const { _initRouteAPI } = require('./src_API/router/init');
-const { _initRoute } = require('./src/router/init');
-const { CheckLoggedIn } = require('./helper/util');
+const { _initRouteAdmin } = require('./src/route/admin');
+const { _initRouteAPI } = require('./src/route/api');
+const { _initRouteWeb } = require('./src/route/web');
 const dotenv = require('dotenv').config();
 
 const port = dotenv.parsed.APP_PORT;
@@ -21,12 +21,14 @@ cron.schedule('0 0 */1 * * *', () => {
    deleteFile('./voices')
  });
  
- app.use(session({
-   secret: 'keyboard cat',
-   resave: false,
-   saveUninitialized: true,
-   cookie: { secure: true }
- }))
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(session({
+   resave: true, 
+   saveUninitialized: true, 
+   secret: 'somesecret', 
+   cookie: { maxAge: oneDay }
+}));
+
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
@@ -40,14 +42,9 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use('/node_modules', express.static('node_modules'))
 app.use('/voices', express.static('voices'))
 
-
-
-app.get("/", CheckLoggedIn, (req, res) => {
-   console.log(CheckLoggedIn)
-   return res.render("home")
-})
 // app.use('/', IndexRouter)
-_initRoute(app)
+_initRouteWeb(app)
+_initRouteAdmin(app)
 _initRouteAPI(app)
 app.listen(port, () => console.log("http://localhost:3013"))
 

@@ -1,5 +1,5 @@
-const { db } = require('../../common/connectDB');
-const { generateFile } = require('../../converter');
+const { db } = require('../common/connectDB');
+const { generateFile } = require('../services/converter');
 
 const ConvertTextModel = {
     convert: async (input) => {

@@ -1,10 +1,10 @@
-const {ConvertTextModel} = require('../model/convertText')
+const {ConvertTextModel} = require('../../model/convertText')
 const { ResponseSuccess, ResponseFail } = require('../../helper/response')
 const { v4: uuidv4 } = require('uuid');
 
 // const { OpenAI } = require('../services/OpenAI')
 
-const ConvertTextController = {
+const ConvertTextAPIController = {
     convert: async (req, res) => {
         let voices = ['vi-VN-Standard-A', 'vi-VN-Standard-B', 'vi-VN-Standard-C', 'vi-VN-Standard-D']
         let input = {
@@ -46,4 +46,4 @@ const ConvertTextController = {
     // }
 }
 
-module.exports = {ConvertTextController}
+module.exports = {ConvertTextAPIController}

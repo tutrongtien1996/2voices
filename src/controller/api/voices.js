@@ -1,6 +1,6 @@
-const {VoicesModel} = require('../model/voices')
+const {VoicesModel} = require('../../model/voices')
 const { ResponseSuccess, ResponseFail } = require('../../helper/response')
-const VoicesController = {
+const VoicesAPIController = {
     list: async (req, res) => {
         let results = await VoicesModel.list();
         if(results === null){
@@ -10,4 +10,4 @@ const VoicesController = {
     }
 }
 
-module.exports = {VoicesController}
+module.exports = {VoicesAPIController}
