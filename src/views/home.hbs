@@ -1,150 +1,182 @@
-<div class="d-flex justify-content-center vw-100  contai_body">
-    <div class=" contai_nav p-3">
-        <div class="d-flex justify-content-between border-bottom">
-            <div class="fw-bold h2 logo">2VOICES</div>
-            <div class="d-flex align-items-center icon_arrow" role="button"><i class="fa-sharp fa-solid fa-arrow-left icon_toggle" style="font-size: 24px; opacity: 60%"></i></div>
+<div>
+    <div class="contai_nav_home shadow">
+        <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light fw-bold" href="#">Text2Speech</a>
+            <form class="d-flex" role="search">
+                <a href="#"><button class="btn btn-outline-light mx-2" type="submit">Sign up</button></a>
+                <a href="#"><button class="btn btn-outline-light" type="submit">Sign in</button></a>
+            </form>
+            </div>
         </div>
-        <div class="contai_content_list mt-3">
-            <ul class="list-unstyled">
-                <li class="rounded-2 my-2"><div class="p-2"><i class="fa-brands fa-studiovinari" style="font-size: 22px"></i><span class="h6 ms-3">Studio</span></div></li>
-                <li class="rounded-2 my-2 active_nav"><div class="p-2"><i class="fa-solid fa-cart-shopping" style="font-size: 19px"></i><span class="h6 ms-3">Mua gói cước</span></div></li>
-                <li class="rounded-2 my-2"><div class="p-2"><i class="fa-sharp fa-regular fa-circle-question" style="font-size: 19px"></i><span class="h6 ms-3">Câu hỏi thường gặp</span></div></li>
-                <li class="rounded-2 my-2"><div class="p-2"><img src="/public/imgs/facebook.png" style="width: 22px;" alt=""><span class="h6 ms-3">Liên hệ facebook</span></div></li>
-                <li class="border-bottom"></li>
-                <li class="rounded-2 my-2"><div class="p-2"><i class="fa-solid fa-user"  style="font-size: 19px"></i><span class="h6 ms-3">user name</span></div></li>
-            </ul>
+        </nav>
+    </div>
+    
+    <div class="container w-100 my-5">
+        {{!-- <div class="d-flex text-light justify-content-between px-3 py-2 title_input">
+            <div>
+                <h6>Gửi yêu cầu cho AI</h6>
+            </div>
+            <div class="d-flex">
+                <div class="wrapper d-none">
+                    <p style="margin-bottom: 0px;">AI đang xử lý</p>
+                    <ul class="">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div>
+                    <button type="button" id="askAI" class="btn btn-outline-light shadow-none btn-sm">Gửi</button>
+                </div>
+            </div>
+        </div> --}}
+        {{!-- <div class="bg-light ">
+            <textarea class="w-100 p-3" id="text-prompt" rows="5" placeholder="enter your prompt..."></textarea>
+        </div> --}}
+        <div class="d-flex justify-content-between px-3 py-2 title_input mt-3">
+            <div>
+                <h6 class="text-light">Chuyển văn bản thành giọng nói</h6>
+            </div>
+            <div class="text-light">
+                <span id="textLength">0</span>
+                <span>/</span>
+                <span>1000</span>
+            </div>
+        </div>
+        <div class="bg-light ">
+            <textarea class="w-100 p-3" id="text" rows="10" placeholder="enter text..."></textarea>
+        </div>
+        <div class="p-3 bg-light d-flex justify-content-between shadow">
+            <div class="contai_voices">
+                <select class="form-control shadow-none content_voices" size="1" id="voiceId">
+                    {{#each voicesId}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="text-light">
+                <audio id="myAudio" src="#" preload="auto">
+                </audio>
+                <button type="button" id="convert" class="btn text-whitw" style="background-color:#00bcd4">Chuyển đổi</button>
+                <button type="button" id="play" class="btn btn-danger" style="display: none;">Đọc</button>
+                <a id="download" class="" href="#"  download="voice-text-to-speech.mp3" style="display:none; color:white">Tải file MP3</a>
+            </div>
         </div>
     </div>
-    <div class=" contai_content p-2  position-relative">
-        <div class="icon_bar d-none"><i class="fa-solid fa-bars" style="font-size: 22px"></i></div>
-        <div class="bg-light rounded-2 p-2 d-flex top_content">
-            <div>
-                <input type="file" id="fileText" class="d-none"/>
-                <label for="fileText" class="btn btn-outline-secondary btn-lg me-4">Tải file .txt</label>
+    
+    <div class="container w-75 py-5" id="servicePrices">
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal" style="color: #00bcd4">Bảng Giá Dịch Vụ</h1>
+      <p class="fs-5 text-muted">Khám phá thông tin bảng giá dịch vụ của <sapn style="color: #00bcd4;">Text2Speech</sapn> ngay tại đây. Tất cả các dịch vụ đều có bản dùng thử miễn phí.</p>
+    </div>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Cá nhân</h4>
             </div>
-            <div>
-             <button type="button" class="btn btn-outline-info btn-lg btn_use_ai">Sử Dụng AI</button>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">0<small class="text-muted fw-light">/tháng</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                <li>5.000 ký tự/ngày</li>
+                <li>Sử dụng 1 thiết bị</li>
+                <li>5 lần tải file/ngày</li>
+                <li>4 Giọng đọc tiêu chuẩn</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg" style="border-color: #00bcd4; color: #00bcd4">Đăng ký miễn phí</button>
+            </div>
             </div>
         </div>
-        <div class="mt-2 rounded-2 p-3 bg-light">
-            <div class="border-bottom pb-2">
-                <input class="px-3 py-2 w-100" type="text" id="title" style=" outline: none; border:none" placeholder="Nhập Title...">
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Chuyên nghiệp</h4>
             </div>
-            <div class="border-bottom d-flex pt-2 pb-3 px-3 edit_voices">
-                <div class="px-2 border-end">
-                        <ul class="categories_voices"  style="margin-bottom: 0px; padding-left: 0px">
-                            {{!-- <li class="active" id="vi-VN-Standard-C"  role="button">Thảo Trinh SG</li>
-                            <li class="d-none"  id ="vi-VN-Standard-B" role="button">Quang Dũng SG</li>
-                            <li class="d-none" id="vi-VN-Standard-A" role="button">Huyền My HN</li>
-                            <li class="d-none" id="vi-VN-Standard-D" role="button">Khánh Trung HN</li> --}}
-                        </ul>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">119,000<small class="text-muted fw-light">/tháng</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                <li>2.500.000 ký tự/tháng</li>
+                <li>20.000 ký tự xử lý tối đa/chuyển đổi</li>
+                <li>Sử dụng trên 5 thiết bị</li>
+                <li>Không giới hạn lượt tải xuống</li>
+                <li>Thời gian lưu trữ: 30 ngày</li>
+                <li>Giọng đọc Việt Nam cao cấp</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg"  style="background-color:#00bcd4">Bắt đầu ngay</button>
+            </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm" style="border-color: #00bcd4;">
+            <div class="card-header py-3" style="background-color: #0f171c; border:#00bcd4; color:#00bcd4">
+                <h4 class="my-0 fw-normal">Doanh nghiệp</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">349,000<small class="text-muted fw-light">/tháng</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                <li>4.000.000 ký tự/tháng</li>
+                <li>20.000 ký tự xử lý tối đa/chuyển đổi</li>
+                <li>Không giới hạn thiết bị</li>
+                <li>Không giới hạn lượt tải xuống</li>
+                <li>Thời gian lưu trữ: 45 ngày</li>
+                <li>Giọng đọc Việt Nam cao cấp</li>
+                <li>Giọng đọc Quốc tế (50+ ngôn ngữ, 200+ giọng đọc)</li>
+                <li>Ứng dụng di động (iOS & Android)</li>
+                <li>Xuất hóa đơn VAT</li>
+                <li>Cung cấp API</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg" style="background-color:#00bcd4">Liên hệ chúng tôi</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>    
+    <div class = "container contact p-4 shadow  mb-1 bg-white">
+            <div class="w-100 text-center">
+                <div class="w-100 pb-4 mb-3 position-relative">
+                   <h1 style="color:#00bcd4" class="">LIÊN HỆ</h1>
+                   <div class="position-absolute bg-secondary top-100 start-50 translate-middle w-25 border-bottom" ></div>
                 </div>
-                <div  class="px-2 border-end">Âm lượng</div>
-                <div class="px-2  border-end">Tốc độ</div>
+                <ul>
+                    <li><a href="#"><img src="/public/imgs/fab.png" alt="" width="50px"></a></li>
+                    <li><a href="#"><img src="/public/imgs/zalo.png" alt=""  width="50px"></a></li>
+                    <li><a href="#"><img src="/public/imgs/gmail.png" alt="" width="50px"></a></li>
+                </ul>
+                <p>0325187911 - 0901915121</p>
             </div>
-            <div class="border-bottom pb-2 pt-2 text_input  d-none contai_ai">
-                <div class="mb-2 d-flex justify-content-between">
-                    <div>Gửi yêu cầu cho AI</div>
-                    <div>
-                        <button type="button" class="btn btn-outline-info" id="askAI">Gửi</button>
-                        <button type="button" class="btn btn-outline-dark btn-sm hide_AI">X</button>
+            <div class="container">
+                <form action="">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-5 col-12">
+                            <div class="form-outline mb-4">
+                            <input type="email" id="form5Example27" placeholder="Enter Your Email..." class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn mb-4" style="background-color:#00bcd4">
+                            Đăng Ký
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <textarea id="text-prompt" class="w-100 shadow-none p-2" placeholder="Nhập văn bản tại đây..."  rows="4"  style=" outline: none; border:none"></textarea>
+                </form>
             </div>
-            <div class="border-bottom pb-2 pt-2 text_input">
-                <textarea class="w-100 shadow-none p-2" id="text" placeholder="Nhập văn bản tại đây..."  rows="13"  style=" outline: none; border:none"></textarea>
-            </div>
-            <div class="p-2">
-                <span>Bôi đen để nghe thử</span>
-                <div class="d-flex justify-content-between">
-                    <div><button type="button" class="btn btn-outline-secondary">Nghe thử</button></div>
-                    <div class="d-flex align-items-center"><span>0/3000</span></div>
-                    <div><button type="button" class="btn btn-info text-white" id="convert">Chuyển đổi</button></div>
-                </div>
-            </div>
-        </div>
-        <div class="px-2 pt-3"> 
-            <div class="contai_audio">
-                <audio class="w-100" controls="true">
-                    <source src="#"  type="audio/mp3">
-                </audio>
-            </div>
-        </div>
-        <div class="row gx-0 mt-3 d-flex justify-content-end filter_check">
-            <div class="col p-1">
-                <div><input type="text"  placeholder="Nhập tiêu đề"></div>
-            </div>
-            <div class="col p-1">
-                <div><input type="text"  placeholder="trạng thái"></div>
-            </div>
-           <div class="col p-1">
-                <div><input type="text"  placeholder="Bắc đầu"></div>
-            </div>
-            <div class="col p-1">
-                <div><input type="text"   placeholder="Ngày kết thúc"></div>
-            </div>
-        </div>
-        <div class="mt-3 contai_table">
-            <table class="">
-                <thead>
-                    <tr>
-                        <th class="p-2 py-3"><input type="checkbox"></th>
-                        <th><div class="col_title">Tiêu đề</div></th>
-                        <th><div class="col_chars">Ký tự</div></th>
-                        <th><div class="col_date">Thời gian</div></th>
-                        <th><div class="col_status">Trạng thái</div></th>
-                        <th><div class="col_voices">Giọng đọc</div></th>
-                        <th><div class="col_action">Thành công</div></th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
     </div>
 </div>
 
 
-<!-- The Modal view detail -->
-<div class="modal" id="myModal">
-  <div class="popup_view modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header contai_header position-relative">
-        <div class="close_popup"> 
-            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Modal -->
+<div class="contai_popup d-none popup_active">
+    <div class="bg-white content_popup">
+        <div class="w-100 text-end p-1 border-bottom "><button type="button" class="btn btn-outline-secondary btn-sm popup_x">X</button></div>
+        <div class="p-4 border-bottom">Thiết bị này đã sử dụng hết 5 lần miễn phí!</div>
+        <div class="p-2 pb-3 text-end"><button type="button" class="btn btn-outline-secondary btn-sm popup_btn">Đóng</button>
+        <a href="#"><button type="button" class="btn btn-outline-info btn-sm">Đăng ký</button></a>
         </div>
-      </div>
-
-      <!-- Modal body -->
-        <div class="modal-body">
-            <div class="w-100 p-2 border top_popup text-center">
-                <h5 class="modal-title text-white">Thông tin</h5>
-            </div>
-            <div class="row p-2 border gx-0">
-                <div class="col">
-                    <ul>
-                        <li><div class="d-flex"><p class="fw-bold me-3 ">ID:</p><p class="view_id"></p></div></li>
-                        <li><div class="d-flex"><p class="fw-bold me-3 ">Tiêu đề:</p><p class="view_title"></p></div></li>
-                        <li><div class="d-flex"><p class="fw-bold me-3 ">Số ký tự:</p><p class="view_number_chars"></p></div></li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul>
-                        <li><div class="d-flex"><p class="fw-bold me-3">Giọng đọc:  </p><p class="view_voice_name"></p></div></li>
-                        <li><div class="d-flex"><p class="fw-bold me-3">Tốc độ:  </p><p>1.0x</p></div></li>
-                        <li><div class="d-flex"><p class="fw-bold me-3">Âm lượng:  </p><p>100%</p></div></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border py-2 px-3">
-                <h6 class="fw-bold">Nội dung</h6>
-                <p class="view_content_text"></p>
-            </div>
-        </div>  
     </div>
-  </div>
 </div>
 
 

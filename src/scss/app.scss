@@ -214,3 +214,107 @@ ul {
   .login_body .submit_outline:hover{
     color: white;
   }
+
+
+
+  //landing
+
+.contai_nav_home {
+    background-color: $trademark;
+}
+.contai_nav_home nav{
+    background-color: $trademark;
+
+}
+.title_input {
+    background-color: $trademark;
+    border-top: 1px solid rgb(105, 105, 105);
+    border-right: 1px solid rgb(105, 105, 105);
+    border-left: 1px solid rgb(105, 105, 105);
+}
+
+textarea {
+    outline: none;
+}
+
+#download {
+    background-color: rgb(120, 120, 120);
+    color: black;
+    text-decoration: none;
+    padding: 9px;
+    padding-bottom: 10px ;
+    border-radius: 4px;
+}
+#download:hover {
+    background-color: rgb(140, 140, 140);
+}
+
+
+.contact ul{
+    list-style-type: none;
+}
+.contact ul li{
+    display: inline;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.wrapper ul {
+    display: flex;
+    align-items: flex-end;
+    overflow-x: scroll;
+    list-style: none;
+    margin-top: 15px;
+    li {
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+      margin: 0 5px 0 0;
+      background-color: #ececec;
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          // height: 10px * $i;
+          transition: opacity 100ms linear $i * 200ms;
+        }
+      }
+    }
+    &.active {
+      li {
+        opacity: 1;
+      }
+    }
+  }
+
+  //css popup
+  .contai_popup{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(48, 39, 39, 0.5);
+  }
+  .content_popup{
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    box-shadow: 5px 10px 18px #888888;
+  }
+
+  
+
+  //reponsive
+
+  @media only screen and (max-width: 400px) {
+    .content_popup {
+      width: 100vw;
+      padding: 5px;
+    }
+  }
