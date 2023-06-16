@@ -8,7 +8,6 @@ const AuthMiddle = {
     // Lấy access token từ header
         const accessTokenFromHeader = req.headers.authorization;
         if (!accessTokenFromHeader) {
-            console.log("da vao")
             return ResponseFail(res, "token not exits")
         }
         const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
