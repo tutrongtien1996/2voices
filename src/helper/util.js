@@ -1,13 +1,7 @@
-function IsLogged(request) {
-  console.log(request.session)
-  // if (request.Session.user) {
-  //   return true;
-  // }
-  // return false;
-}
 
 function CheckLoggedIn(req, res, next) {
-  if (!IsLogged(req)) {
+
+  if (!req.session.user) {
     res.redirect("/auth/login");
     return;
   } else {

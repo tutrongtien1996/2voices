@@ -1,8 +1,8 @@
-const {TextDetailModel} = require('../model/textDetail')
+const {ProctModel} = require('../../model/product')
 const { ResponseSuccess, ResponseFail } = require('../../helper/response')
-const TextDetailController = {
+const ProductAPIController = {
     list: async (req, res) => {
-        let results = await TextDetailModel.list(req.user);
+        let results = await ProctModel.list(req.user);
         if(results === null){
             return ResponseFail(res, "request is errors")
         }
@@ -10,4 +10,4 @@ const TextDetailController = {
     }
 }
 
-module.exports = {TextDetailController}
+module.exports = {ProductAPIController}

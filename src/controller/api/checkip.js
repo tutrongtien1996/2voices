@@ -1,8 +1,8 @@
 
 const { ResponseSuccess, ResponseFail } = require('../../helper/response')
-const {CheckIPModel} = require('../model/checkIP')
+const {CheckIPModel} = require('../../model/checkIP')
 const { v4: uuidv4 } = require('uuid');
-const CheckIPController = {
+const CheckIPAPIController = {
     check: async (req, res) => {
         let input = {
             name: req.ip,
@@ -29,4 +29,4 @@ const CheckIPController = {
     }
 }
 
-module.exports = {CheckIPController}
+module.exports = {CheckIPAPIController}

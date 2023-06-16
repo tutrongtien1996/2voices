@@ -1,5 +1,5 @@
 const {ResponseSuccess, ResponseFail} = require('../helper/response');
-const { AuthModel } = require('../src_API/model/Auth');
+const { AuthModel } = require('../model/Auth');
 const { jwtHandle } = require('./handlePackage');
 
 

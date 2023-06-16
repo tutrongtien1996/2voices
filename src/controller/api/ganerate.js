@@ -1,7 +1,7 @@
 
 const { ResponseSuccess, ResponseFail } = require('../../helper/response')
 
-const { OpenAI } = require('../services/OpenAI')
+const { OpenAI } = require('../../services/OpenAI')
 
 const GanerateController = {
     send_AI: async (req, res) => {

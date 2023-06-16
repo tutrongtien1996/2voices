@@ -1,4 +1,4 @@
-const { db } = require('../../common/connectDB');
+const { db } = require('../common/connectDB');
 
 const VoicesModel = {
     list: async () => {
