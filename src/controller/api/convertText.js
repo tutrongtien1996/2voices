@@ -1,15 +1,15 @@
 const {ConvertTextModel} = require('../../model/convertText')
 const { ResponseSuccess, ResponseFail } = require('../../helper/response')
 const { v4: uuidv4 } = require('uuid');
+const { voices } = require('../../data/voices');
 
 // const { OpenAI } = require('../services/OpenAI')
 
 const ConvertTextAPIController = {
     convert: async (req, res) => {
-        let voices = ['vi-VN-Standard-A', 'vi-VN-Standard-B', 'vi-VN-Standard-C', 'vi-VN-Standard-D']
         let input = {
             id: uuidv4(),
-            user_id: req.user.user_id,
+            user_id: req.session.user.id,
             voiceId: req.body.voiceId,
             content: req.body.text,
             title: req.body.title,

@@ -1,3 +1,4 @@
+
 let convertBtn = document.querySelector("#convert");
 let playtBtn = document.querySelector("#play");
 let downloadBtn = document.querySelector("#download");
@@ -7,10 +8,21 @@ let textPrompt = document.querySelector("#text-prompt");
 let audioElement = document.querySelector("#myAudio");
 let askAIButton = document.querySelector("#askAI");
 let voiceSelectorChange = document.querySelector(".categories_voices .active");
+listVoices()
+async function listVoices(){
+    let result =  await axios.get(`/voices`, { withCredentials: true })
+            .then(function (response) {
+                return response.data
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    return result
+}
 
 
-async function getListVoices(){
-    let result =  await axios.get(`${URL_API}/api/voices`)
+async function getProduct(){
+    let result =  await axios.get(`/voices`)
             .then(function (response) {
                 return response.data
             })
@@ -81,21 +93,18 @@ function resetButton(status){
 
 const Repository = {
     convert: async (input) => {
-        let result =  await axios.post(`${URL_API}/api/convertText`, input,
-            {headers: {
-                authorization: localStorage.getItem('accessToken')
-            }})
+        let result =  await axios.post(`/convert`, input)
             .then(function (response) {
                 return response.data
             })
             .catch(function (error) {
                 console.log(error);
             });
-        
+        console.log(result)
         return result
     },
     askAI: async (prompt) => {
-        let result =  await axios.post(`${URL_API}/api/ganerate`, {prompt: prompt}, 
+        let result =  await axios.post(`/ganerate`, {prompt: prompt}, 
             {headers: {
                 authorization: localStorage.getItem('accessToken')
             }})
@@ -110,7 +119,7 @@ const Repository = {
 }
 
 async function addlistSpeech(result){
-    let list_voices = await  getListVoices()
+    let list_voices = await  getProduct()
 
     let element = list_voices.data.find(element => element.id == result.data.voiceId);
     result.data.voice_name = element.name

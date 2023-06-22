@@ -1,13 +1,13 @@
+
 renderVoices()
 async function getListVoices(){
-    let result =  await axios.get(`${URL_API}/api/voices`)
+    let result =  await axios.get(`/voices`)
             .then(function (response) {
                 return response.data
             })
             .catch(function (error) {
                 console.log(error);
             });
-    console.log(result)
     return result
 }
 
@@ -16,7 +16,7 @@ async function renderVoices(){
     let results = await getListVoices();
     if(results.success && (results.data.length > 0)){
         results.data.forEach(item => { 
-            html += `<li class="d-none" id="${item.id}"  role="button">${item.name}</li>` 
+            html += `<li class="d-none" id="${item}"  role="button">${item}</li>` 
         });
         let categories_voices = document.querySelector(".categories_voices");
         if(categories_voices){

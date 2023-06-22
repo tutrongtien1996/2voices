@@ -1,5 +1,6 @@
+axios.defaults.withCredentials = true
 async function getListVoices(){
-    let result =  await axios.get(`${URL_API}/api/voices`)
+    let result =  await axios.get(`/voices`)
             .then(function (response) {
                 return response.data
             })
@@ -12,7 +13,7 @@ let list_voices = await getListVoices()
 
 renderlistTextDetail()
 async function getListTextDetails(){
-    let result =  await axios.get(`${URL_API}/api/textDetails`,
+    let result =  await axios.get(`/textDetails`,
             {headers: {
                 authorization: localStorage.getItem('accessToken')
             }})
