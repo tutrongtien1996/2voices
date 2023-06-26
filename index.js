@@ -18,7 +18,7 @@ const dotenv = require('dotenv').config();
 
 const port = dotenv.parsed.APP_PORT;
 
-cron.schedule('0 0 */1 * * *', () => {
+cron.schedule('* 0 * * * *', () => {
    deleteFile('./voices')
  });
  
@@ -31,7 +31,10 @@ app.use(session({
 }));
 app.use(cookieParser())
 
-app.use(cors())
+app.use(cors({
+   origin: '*'
+}));
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
 app.engine('hbs', engine({

@@ -11,7 +11,7 @@ const AuthController = {
     const result = await AuthAPIController.login(request, response);
     if (result.value) {
       request.session.user = {
-        id: result.user.id,
+        id: result.user.user_id,
         name: result.user.name,
         accessToken: result.accessToken
       };

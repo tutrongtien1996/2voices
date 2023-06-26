@@ -5,7 +5,7 @@ function deleteFile(pathFolder){
         const { birthtime } = fs.statSync(pathFolder + file)
         let dif = new Date().getTime() - (new Date(birthtime).getTime() + 28800000)
         if(dif > 0){
-            fs.unlinkSync(pathFolder + file)
+           fs.unlinkSync(pathFolder + '/' + file)
         }
     });
 }
