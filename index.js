@@ -4,7 +4,8 @@ const session = require('express-session')
 const path = require("path")
 const express = require('express')
 const {engine} = require('express-handlebars');
-var cors = require('cors')
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
 const app = express();
 const fs = require('fs');
 const util = require('util');
@@ -17,7 +18,7 @@ const dotenv = require('dotenv').config();
 
 const port = dotenv.parsed.APP_PORT;
 
-cron.schedule('0 0 */1 * * *', () => {
+cron.schedule('* 0 * * * *', () => {
    deleteFile('./voices')
  });
  
@@ -28,8 +29,12 @@ app.use(session({
    secret: 'somesecret', 
    cookie: { maxAge: oneDay }
 }));
+app.use(cookieParser())
 
-app.use(cors())
+app.use(cors({
+   origin: '*'
+}));
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
 app.engine('hbs', engine({
@@ -38,7 +43,7 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'src/views'));
 
-app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use('/node_modules', express.static('node_modules'))
 app.use('/voices', express.static('voices'))
 

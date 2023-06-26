@@ -1,33 +1,25 @@
-renderVoices()
-async function getListVoices(){
-    let result =  await axios.get(`${URL_API}/api/voices`)
-            .then(function (response) {
-                return response.data
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    console.log(result)
-    return result
-}
 
+import {listVoices} from '../data/voicesList.js'
+renderVoices()
 async function renderVoices(){
     let html = "";
-    let results = await getListVoices();
+    let results = await listVoices();
     if(results.success && (results.data.length > 0)){
         results.data.forEach(item => { 
-            html += `<li class="d-none" id="${item.id}"  role="button">${item.name}</li>` 
+            html += `<li class="d-none" id="${item}"  role="button">${item}</li>` 
         });
         let categories_voices = document.querySelector(".categories_voices");
         if(categories_voices){
             categories_voices.innerHTML = html;
         }
-        let categories_voices_first = categories_voices.querySelector("li:first-child");
-        if(categories_voices_first){
-            categories_voices_first.classList.remove("d-none");
-            categories_voices_first.classList.add("active");
-        }
-        showCategoriesVoices()
+        if(categories_voices){
+            let categories_voices_first = categories_voices.querySelector("li:first-child");
+            if(categories_voices_first){
+                categories_voices_first.classList.remove("d-none");
+                categories_voices_first.classList.add("active");
+            }
+            showCategoriesVoices()
+        }    
     }
 }
 
@@ -59,4 +51,3 @@ function getVoices(){
         }
     })
 }
-export {getListVoices}

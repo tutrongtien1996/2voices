@@ -1,4 +1,4 @@
-export const voices =  [
+ const voices =  [
     "en-AU-News-E",
     "en-AU-News-F", 
     "en-AU-News-G", 
@@ -69,3 +69,5 @@ export const voices =  [
     "vi-VN-Wavenet-D",
     "vi-VN-Neural2-A",
     "vi-VN-Neural2-D"]
+
+module.exports = {voices}

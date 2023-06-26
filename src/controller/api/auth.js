@@ -58,7 +58,7 @@ const AuthAPIController = {
         if (!accessToken) {
             return req.isServer ? {value: false, message: "login uncucess"} : ResponseFail(res, "login uncucess")
         }
-        let user = users[0]
+        let user = users[0];
         let refreshToken = randtoken.generate(50); // tạo 1 refresh token ngẫu nhiên
         if (!user.refreshToken) {
             user.refreshToken  = refreshToken;
