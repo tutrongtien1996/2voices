@@ -36,6 +36,7 @@ CovertTextRouter.post("/", CheckLoggedIn, ConvertTextAPIController.convert)
 GanerateRouter.post("/", CheckLoggedIn, GanerateController.send_AI)
 
 ProductRouter.get("/", CheckLoggedIn, ProductAPIController.list)
+ProductRouter.delete("/", CheckLoggedIn, ProductAPIController.delete)
 
 VoicesRouter.get('/',  VoicesAPIController.list)
 

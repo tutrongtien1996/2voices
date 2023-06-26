@@ -8,6 +8,16 @@ const ProctModel = {
         } catch {
             return null;
         }
+    },
+
+    delete : async (input) => {
+        try{
+            let results = await db('text_details').del().where('id', input.id);
+            return true;
+        }
+        catch {
+            return false
+        }
     }
 }
 

@@ -2,6 +2,8 @@ import { listProducts } from "../data/product.js";
 import { playAudio } from "../products/playAudio.js";
 import { formatTime } from "../helper/formatTime.js";
 import { showView } from "../products/view.js";
+import { editProduct } from "../products/editProduct.js";
+import { deleteProduct } from "../products/deleteProduct.js";
 
 axios.defaults.withCredentials = true;
 
@@ -23,8 +25,9 @@ async function renderProducts(){
                     <ul class="list-inline mt-3">
                         <li class="list-inline-item play_text_details" data-textDetailId="${item.id}"><i class="fa-solid fa-play"></i></li>
                         <li class="list-inline-item view_text_details"  data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-eye"></i></li>
-                        <li class="list-inline-item"><i class="fa-solid fa-pen"></i></li>
-                        <li class="list-inline-item"><a id="" class="download text-secondary" href="${item.url_audio}"  download="voice-text-to-speech.mp3"><i class="fa-solid fa-download"></i></a>
+                        <li class="list-inline-item download_text_details"><a id="" class="download text-dark" href="${item.url_audio}"  download="voice-text-to-speech.mp3"><i class="fa-solid fa-download"></i></a>
+                        <li class="list-inline-item edit_text_details"><i class="fa-solid fa-pen"></i></li>
+                        <li class="list-inline-item delete_text_details"><i class="fa-solid fa-trash-can"></i></li>
                         </li>
                     </ul>
                 </td>
@@ -36,6 +39,8 @@ async function renderProducts(){
 
     playAudio()
     showView()
+    editProduct()
+    deleteProduct()
 }
 
 

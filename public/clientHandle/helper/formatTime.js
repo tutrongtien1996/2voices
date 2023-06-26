@@ -7,7 +7,7 @@ function formatTime(input){
     const min = time.getMinutes();
     const second = time.getSeconds();
     
-    const format = year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + second;
+    const format = year + '-' + month + '-' + day + ' ' + hour + ':' + min;
     return format
 }
 export  {formatTime}

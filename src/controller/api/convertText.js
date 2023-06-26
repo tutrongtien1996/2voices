@@ -17,8 +17,8 @@ const ConvertTextAPIController = {
             volumn: req.body.volumn,
             speed: req.body.speed
         }
-        if(input.content.length > 3000){
-            return ResponseFail(res, "max length < 3000")
+        if(input.content.length > 5000){
+            return ResponseFail(res, "max length < 5000")
         }
         if(input.content.length < 1){
             return ResponseFail(res, "min length > 0")

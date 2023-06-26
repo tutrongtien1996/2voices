@@ -4,14 +4,10 @@ import { listVoices } from "./data/voicesList.js";
 import { addlistSpeech } from "./products/addProduct.js";
 
 let convertBtn = document.querySelector("#convert");
-let playtBtn = document.querySelector("#play");
-let downloadBtn = document.querySelector("#download");
 let text = document.querySelector("#text");
 let title = document.querySelector("#title");
 let textPrompt = document.querySelector("#text-prompt");
-let audioElement = document.querySelector("#myAudio");
 let askAIButton = document.querySelector("#askAI");
-let voiceSelectorChange = document.querySelector(".categories_voices .active");
 listVoices()
 
 if(convertBtn){
@@ -21,15 +17,24 @@ if(convertBtn){
     
     convertBtn.onclick = async () => {
         let voiceSelector = document.querySelector(".categories_voices .active");
-        resetButton(1)
-        let result = await Repository.convert({
-            title: title.value,
-            text: text.value, 
-            voiceId: voiceSelector.id
-        })
-        if(await result.success){
-            await addlistSpeech(result)
+        resetButton(1);
+        document.querySelector('.loading_convert').classList.remove('d-none');
+        try{
+            let result = await Repository.convert({
+                title: title.value,
+                text: text.value, 
+                voiceId: voiceSelector.id
+            })
+            if(await result.success){
+                await addlistSpeech(result)
+            }
         }
+        catch(err){
+            return;
+        }
+        document.querySelector('.loading_convert').classList.add('d-none');  
+        document.querySelector('.success_convert').classList.remove('d-none');  
+        setTimeout(showButtonSuccess, 2000)
     }
 }
 
@@ -39,7 +44,7 @@ if(askAIButton){
         if (textPrompt.value.length <= 0) {
             return;
         }
-        document.querySelector('.loading').classList.remove('d-none');
+        document.querySelector('.loading_AI').classList.remove('d-none');
         askAIButton.classList.add('d-none');
         try{
             let result = await Repository.askAI(textPrompt.value)
@@ -68,6 +73,10 @@ function resetButton(status){
         }
         // document.querySelector('#textLength').innerText = text.value.length
     }
+}
+
+function showButtonSuccess(){
+    document.querySelector('.success_convert').classList.add('d-none')
 }
 
 
