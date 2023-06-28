@@ -1,7 +1,6 @@
 const dotenv = require('dotenv').config();
-
 const db = require('knex')({
-  client: 'mysql',
+  client: 'mysql2',
   connection: {
     host: dotenv.parsed.MY_HOST,
     port: dotenv.parsed.MY_PORT,
