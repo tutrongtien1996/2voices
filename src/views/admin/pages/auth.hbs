@@ -12,10 +12,10 @@
             </div>
             <div class="d-flex justify-content-between">
                 <button type="submit" class="btn submit text-light">Đăng Nhập</button>
-                <span id="sign_in_transform" class="btn submit_outline btn-outline-info">Đăng Ký</span>
+                {{!-- <span id="sign_in_transform" class="btn submit_outline btn-outline-info">Đăng Ký</span> --}}
             </div>
         </form>
-         <form class="form_signin d-none" action="#" method="post">
+         {{!-- <form class="form_signin d-none" action="#" method="post">
             <div><h2>Đăng ký<pre></pre></h2></div>
             <div class="mb-3">
                 <label for="exampleInputEmail2" class="form-label">Email </label>
@@ -29,7 +29,7 @@
                 <button type="submit" class="btn submit text-light">Đăng Ký</button>
                 <span  id="sign_up_transform"  class="btn submit_outline btn-outline-info">Đăng Nhập</span>
             </div>
-        </form>
+        </form> --}}
     </div>
 </div>
 <script>
@@ -40,12 +40,12 @@
             document.querySelector(".form_signin").classList.remove("d-none");
         }
     }
-    let sign_up_element = document.querySelector("#sign_up_transform");
-    if(sign_up_element){
-        sign_up_element.onclick = () => {
-            document.querySelector(".form_signin").classList.add("d-none");
-            document.querySelector(".form_signup").classList.remove("d-none");
-        }
-    }
+    //let sign_up_element = document.querySelector("#sign_up_transform");
+    //if(sign_up_element){
+      //  sign_up_element.onclick = () => {
+        //    document.querySelector(".form_signin").classList.add("d-none");
+          //  document.querySelector(".form_signup").classList.remove("d-none");
+        //}
+    //}
 
 </script>

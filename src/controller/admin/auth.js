@@ -8,6 +8,7 @@ const AuthController = {
     return response.render('admin/pages/auth');
   },
   DoLogin: async function(request, response) {
+    request.isServer = true;
     const result = await AuthAPIController.login(request, response);
     if (result.value) {
       request.session.user = {
