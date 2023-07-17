@@ -3,7 +3,7 @@ const { db } = require('../common/connectDB');
 const ProctModel = {
     list: async (input) => {
         try {
-            let results = db('text_details').select('*').where('user_id', input.id);
+            let results = db('text_details').select('*').where('user_id', input.id).orderBy('created_at', 'desc');
             return results
         } catch {
             return null;

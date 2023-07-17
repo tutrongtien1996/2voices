@@ -10,8 +10,9 @@ async function addlistSpeech(result){
     delete result.data.filename;
     delete result.data.voiceId;
 
+    const jsonDetail = JSON.stringify(result.data).replace(/"/g, '&quot;');
     let tbodyElement = document.querySelector(".contai_table tbody");
-    let htmlAppenchild = `<tr class="border-bottom" data-detail='${JSON.stringify(result.data)}'>
+    let htmlAppenchild = `<tr class="border-bottom" data-detail="${jsonDetail}">
                         <td class="ps-2 py-3"><input type="checkbox"></td>
                         <td  class="col_title">${result.data.title}</td>
                         <td class="col_chars">${result.data.number_chars}</td>
@@ -33,5 +34,7 @@ async function addlistSpeech(result){
     showView()
     editProduct()
     deleteProduct()
+    const table_product = document.getElementById("table_product");
+    table_product.scrollIntoView({ behavior: 'smooth' });
 }  
 export {addlistSpeech}
