@@ -5,6 +5,8 @@ function editProduct(){
             const data = JSON.parse(item.parentElement.parentElement.parentElement.getAttribute("data-detail"));
             document.querySelector("#title").value = data.title;
             document.querySelector("#text").innerText = data.content;
+            const contentWrapper = document.getElementById("content_wrapper");
+            contentWrapper.scrollTo({ top: 0, behavior: 'smooth' });
         }
     })
 }
