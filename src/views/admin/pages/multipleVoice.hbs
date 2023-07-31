@@ -1,0 +1,173 @@
+<div class="d-flex justify-content-center vw-100  contai_body">
+    <div class=" contai_nav p-3">
+        <div class="d-flex justify-content-between border-bottom">
+            <div class="fw-bold h2 logo">2VOICES</div>
+            <div class="d-flex align-items-center icon_arrow" role="button"><i class="fa-sharp fa-solid fa-arrow-left icon_toggle" style="font-size: 24px; opacity: 60%"></i></div>
+        </div>
+        <div class="contai_content_list mt-3">
+            <ul class="list-unstyled">
+                <li class="rounded-2 my-2"><div class="p-2"><i class="fa-brands fa-studiovinari" style="font-size: 22px"></i><span class="h6 ms-3">Studio</span></div></li>
+                <li class="rounded-2 my-2"><div class="p-2"><a href="/studio/multiple-voice"><i class="fa-brands fa-studiovinari" style="font-size: 22px"></i><span class="h6 ms-3">Conversation</span></a></div></li>
+                <li class="rounded-2 my-2 active_nav"><div class="p-2"><i class="fa-solid fa-cart-shopping" style="font-size: 19px"></i><span class="h6 ms-3">Mua gói cước</span></div></li>
+                <li class="rounded-2 my-2"><div class="p-2"><i class="fa-sharp fa-regular fa-circle-question" style="font-size: 19px"></i><span class="h6 ms-3">Câu hỏi thường gặp</span></div></li>
+                <li class="rounded-2 my-2"><div class="p-2"><img src="/public/imgs/facebook.png" style="width: 22px;" alt=""><span class="h6 ms-3">Liên hệ facebook</span></div></li>
+                <li class="border-bottom"></li>
+                <li class="rounded-2 my-2"><div class="p-2"><i class="fa-solid fa-user"  style="font-size: 19px"></i><span class="h6 ms-3">user name</span></div></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content_wrapper" class="contai_content p-2  position-relative">
+        <div class="container">
+            <h1>Conversation Form</h1>
+            <form id="conversationForm">
+                <!-- Participant fields -->
+                <div id="participantsContainer">
+                    <div>
+                        <label for="participantId">Participant ID:</label>
+                        <input type="text" class="participantId">
+                        <label for="participantVoice">Voice ID:</label>
+                        <select class="participantVoice">
+                        {{#each voices}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                        </select>
+                        <button type="button" class="removeParticipantBtn">Remove Participant</button>
+                    </div>
+                </div>
+
+                <button type="button" id="addParticipantBtn" class="btn btn-info">Add Participant</button>
+
+                <!-- Conversation field -->
+                <div>
+                    <label for="conversation">Conversation:</label>
+                    <textarea id="conversation" rows="10" class="form-control"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div id="audioWrapper" style="display: none;">
+                <audio controls id="audioPlayer">
+                    <source src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <br>
+                <button onclick="downloadAudio()">Download MP3</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        var mp3URL = '';
+        let sentenceId = 1; // Initialize the sentence ID counter
+        let voiceSelection = `
+            <select class="participantVoice">
+            {{#each voices}}
+                <option value="{{this}}">{{this}}</option>
+            {{/each}}
+            </select>
+        `;
+        // Function to add a new participant field
+        function addParticipantField() {
+            const participantDiv = document.createElement('div');
+            participantDiv.innerHTML = `
+                <label for="participantId">Participant ID:</label>
+                <input type="text" class="participantId">
+                <label for="participantVoice">Voice ID:</label>
+                ${voiceSelection}
+                <button type="button" class="removeParticipantBtn">Remove Participant</button>
+            `;
+            document.getElementById('participantsContainer').appendChild(participantDiv);
+        }
+
+        // Function to remove a participant field
+        function removeParticipantField(event) {
+            const participantDiv = event.target.parentNode;
+            document.getElementById('participantsContainer').removeChild(participantDiv);
+        }
+
+        document.getElementById('addParticipantBtn').addEventListener('click', function () {
+            addParticipantField();
+        });
+
+        document.getElementById('participantsContainer').addEventListener('click', function (event) {
+            if (event.target.classList.contains('removeParticipantBtn')) {
+                removeParticipantField(event);
+            }
+        });
+
+        document.getElementById('conversationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get participants data
+            const people = [];
+            const participantFields = document.querySelectorAll('.participantId');
+            const voiceFields = document.querySelectorAll('.participantVoice');
+            participantFields.forEach((participantField, index) => {
+                const person = {
+                    id: participantField.value,
+                    voice_id: voiceFields[index].value,
+                };
+                people.push(person);
+            });
+
+            // Get conversation data and add unique ID to each sentence
+            const conversation = document.getElementById('conversation').value.split('\n')
+                .map(message => {
+                    const person = message.split(': ')[0];
+                    const text = message.split(': ')[1];
+                    const sentence = {
+                        [person]: text
+                    };
+                    return sentence;
+                });
+
+            // Combine data into the desired format
+            const formData = {
+                voices: people,
+                conversation: conversation,
+            };
+
+            // Convert data to JSON format
+            const jsonData = JSON.stringify(formData);
+            postData(formData, function() {
+                showAudioSection();
+            })
+
+            // Clear the form fields
+            
+        });
+
+        function postData(conversationData, successCB) {
+            const cookies = document.cookie;
+            axios.post('/api/convert/conversation', conversationData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Cookie': cookies,
+                },
+            })
+            .then(response => {
+                mp3URL = response.data.data
+                successCB()
+            })
+            .catch(error => {
+                alert('Error:', error);
+            });
+        }
+
+        function showAudioSection() {
+            const audioWrapper = document.getElementById('audioWrapper');
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = mp3URL;
+            audioWrapper.style.display = 'block';
+        }
+
+        function downloadAudio() {
+            const mp3Url = mp3URL;
+            const link = document.createElement('a');
+            link.href = mp3Url;
+            link.download = "audio.mp3";
+            link.click(); 
+            link.remove();
+        }
+    </script>

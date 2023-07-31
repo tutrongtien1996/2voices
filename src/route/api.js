@@ -6,6 +6,7 @@ const { ProductAPIController } = require('../controller/api/product.js');
 const { VoicesAPIController } = require('../controller/api/voices.js');
 const { AuthMiddle } = require('../helper/middleware.js');
 const { GanerateController } = require('../controller/api/ganerate.js');
+const { CheckLoggedIn } = require('../helper/util');
 
 let isAuth = AuthMiddle.isAuth;
 const AuthRouter = express.Router();
@@ -21,6 +22,7 @@ AuthRouter.post('/refresh', AuthAPIController.refreshToken)
 CheckIPRouter.get('/', CheckIPAPIController.check);
 
 CovertTextRouter.post("/", isAuth, ConvertTextAPIController.convert)
+CovertTextRouter.post("/conversation", CheckLoggedIn, ConvertTextAPIController.convertMultipleVoice)
 
 GanerateRouter.post("/", isAuth, GanerateController.send_AI)
 

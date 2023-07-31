@@ -39,4 +39,37 @@ async function generateFile(voiceId, text) {
     return fileName
 }
 
-module.exports = {listVoices, generateFile}
+/**
+ * Sythesizes sample text into an .mp3 file.
+ */
+async function generateConversation(input) {
+  var people = input.voices;
+  var audioContentArray = []; // Array to store the audio content
+
+  for (const sentence of input.conversation) {
+    for (const person of people) {
+      let personId = Object.keys(sentence)[0];
+      if (person.id === personId) {
+        let request = {
+          input: { ssml: '<speak>'+sentence[personId]+'<break time="200ms"/></speak>' },
+          voice: { languageCode: 'en-US', name: person['voice_id'] },
+          audioConfig: { audioEncoding: 'MP3' },
+        };
+
+        let [response] = await client.synthesizeSpeech(request);
+        audioContentArray.push(response.audioContent); // Add audio content to the array
+      }
+    }
+  }
+
+  const writeFile = util.promisify(fs.writeFile);
+  let fileName = 'voices/' + uuidv4() + '.mp3';
+
+  // Concatenate the audio content into a single Buffer
+  let concatenatedAudio = Buffer.concat(audioContentArray);
+
+  await writeFile(fileName, concatenatedAudio, 'binary');
+  return fileName;
+}
+
+module.exports = {listVoices, generateFile, generateConversation}

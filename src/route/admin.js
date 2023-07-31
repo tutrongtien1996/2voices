@@ -28,6 +28,7 @@ AuthRouter.get('/logout',(req, res) => {
 
 
 StudioRouter.get('/', CheckLoggedIn, StudioController.index)
+StudioRouter.get('/multiple-voice', CheckLoggedIn, StudioController.mulitpleVoice)
 
 CheckIPRouter.get('/', CheckIPAPIController.check);
 
