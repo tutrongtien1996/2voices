@@ -1,4 +1,7 @@
 @import 'variables';
+@import 'conversation.scss';
+@import 'common.scss';
+@import 'sideBar.scss';
 
 * {
     box-sizing: border-box;
@@ -7,7 +10,7 @@
 
 .contai_body {
     box-sizing: border-box;
-    background-color: var($body-color)
+    background-color: var($body-color) 
 }
 
 //css content
@@ -17,7 +20,7 @@
     width: calc(100% - 280px);
     height: 100vh;
     transition: width 0.2s linear;
-    background-color: rgb(232, 231, 231);
+    background-color: $body-cl;
     overflow-y: scroll;
 }
 .contai_content_full {
