@@ -1,0 +1,47 @@
+input.participantId{
+    border: none;
+    border-right: $border2;
+    border-bottom: $border2;
+    background-color: transparent;
+    outline: none !important;
+}
+.contai_input_name{
+    border-top: $border2;
+}
+
+.container_input_person{
+    gap: 20px;
+}
+.container_input_person .contai_input_name{
+    position: relative;
+
+}
+.contai_input_name span{
+    position: absolute;
+    right: 0px;
+    top: -2px;
+    height: 3px;
+    width: 50px;
+    background-color: $body-cl;
+}
+.contai_input_voice select{
+    border: none;
+    background-color: transparent;
+    width: fit-content;
+    border-right: $border2;
+    color: $text-black2;
+}
+.contai_input_voice select:focus-visible{
+    outline: none;
+}
+.participantsContainer {
+    background-color: $body-cl;
+    padding: 10px;
+    gap: 20px;
+    width: fit-content;
+    
+}
+
+
+
+
