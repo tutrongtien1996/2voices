@@ -1,5 +1,6 @@
 import { Repository } from "./data/reponsitory.js";
 import { listVoices } from "./data/voicesList.js";
+import { coutChar } from "./products/countChar.js";
 
 import { addlistSpeech } from "./products/addProduct.js";
 
@@ -8,11 +9,16 @@ let text = document.querySelector("#text");
 let title = document.querySelector("#title");
 let textPrompt = document.querySelector("#text-prompt");
 let askAIButton = document.querySelector("#askAI");
+let coutCharElement = document.querySelector('#coutCharText')
+let cout = 0;
 listVoices()
 
 if(convertBtn){
     convertBtn.disabled = true
-    text.onkeyup = () => { resetButton(0) }
+    text.onkeyup = (e) => {
+        cout = parseInt(coutChar(e))
+        coutCharElement.innerText = cout;
+        resetButton(0) }
     text.onchange = () => { resetButton(0) }
     
     convertBtn.onclick = async () => {
@@ -66,7 +72,7 @@ function resetButton(status){
         convertBtn.disabled = true
     }
     if (status == 0) {
-        if (text.value.length < 1 || text.value.length > 3000) {
+        if (text.value.length < 1 || text.value.length > 5000) {
             convertBtn.disabled = true
         } else {
             convertBtn.disabled = false
@@ -78,6 +84,7 @@ function resetButton(status){
 function showButtonSuccess(){
     document.querySelector('.success_convert').classList.add('d-none')
 }
+
 
 
 
