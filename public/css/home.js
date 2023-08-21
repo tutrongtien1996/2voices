@@ -11,6 +11,7 @@ function hideNav(){
         hide.onclick = () => {
             document.querySelector(".contai_nav").classList.add("contai_nav_hide");
             document.querySelector(".contai_content").classList.add("contai_content_full");
+            show.classList.remove("d-none")
         }
     }
 }
@@ -19,6 +20,7 @@ function showNav(){
         show.onclick = () => {
             document.querySelector(".contai_nav").classList.remove("contai_nav_hide");
             document.querySelector(".contai_content").classList.remove("contai_content_full");
+            show.classList.add("d-none")
         }
     }
 }

@@ -27,17 +27,17 @@ AuthRouter.get('/logout',(req, res) => {
 });
 
 
-StudioRouter.get('/', StudioController.index) //add CheckLoggedIn
-StudioRouter.get('/multiple-voice', StudioController.mulitpleVoice)//add CheckLoggedIn
+StudioRouter.get('/', CheckLoggedIn, StudioController.index)//CheckLoggedIn
+StudioRouter.get('/multiple-voice', CheckLoggedIn, StudioController.mulitpleVoice)//CheckLoggedIn
 
 CheckIPRouter.get('/', CheckIPAPIController.check);
 
-CovertTextRouter.post("/", ConvertTextAPIController.convert)//add CheckLoggedIn
+CovertTextRouter.post("/",CheckLoggedIn, ConvertTextAPIController.convert)//CheckLoggedIn
 
-GanerateRouter.post("/", GanerateController.send_AI)//add CheckLoggedIn
+GanerateRouter.post("/",CheckLoggedIn, GanerateController.send_AI)//CheckLoggedIn
 
-ProductRouter.get("/", ProductAPIController.list)//add CheckLoggedIn
-ProductRouter.delete("/", ProductAPIController.delete)//add CheckLoggedIn
+ProductRouter.get("/",CheckLoggedIn, ProductAPIController.list)//CheckLoggedIn
+ProductRouter.delete("/",CheckLoggedIn, ProductAPIController.delete)//CheckLoggedIn
 
 VoicesRouter.get('/',  VoicesAPIController.list)
 

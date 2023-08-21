@@ -1,4 +1,7 @@
 @import 'variables';
+@import 'conversation.scss';
+@import 'common.scss';
+@import 'sideBar.scss';
 
 * {
     box-sizing: border-box;
@@ -7,7 +10,7 @@
 
 .contai_body {
     box-sizing: border-box;
-    background-color: var($body-color)
+    background-color: var($body-color) 
 }
 
 //css content
@@ -16,29 +19,19 @@
     box-sizing: border-box;
     width: calc(100% - 280px);
     height: 100vh;
-    transition: width 0.2s linear;
-    background-color: rgb(232, 231, 231);
+    transition: all 0.1s linear;
+    background-color: $body-cl;
     overflow-y: scroll;
 }
 .contai_content_full {
-    transition: width  0.2s linear;
+    transition: all  0.1s linear;
     width: 100%;
 }
 .contai_content_full .top_content{
     margin-left: 50px ;
 }
 
-.contai_content_full .icon_bar{
-    box-sizing: border-box;
-    display: block !important;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    padding: 10px;
-    background-color: rgb(245, 245, 245);
-    border-radius: 50%;
-    cursor: pointer;
-}
+
 .edit_voices {
     position: relative;
 }
@@ -140,35 +133,7 @@ audio::-webkit-media-controls-panel{
 
 
 // css menu nav
-.contai_nav {
-    width: 280px;
-    transition: width 0.2s linear;
 
-}
-.contai_nav_hide {
-    display: none;
-    padding: 0px !important;
-    width: 0px;
-    transition: width 0.2s linear;
-}
-.logo{
-    color: $trademark;
-}
-.contai_nav ul li {
-    cursor: pointer;
-}
-
-.contai_nav ul li.active_nav {
-    color: white;
-    background-color: $trademark;
-}
-.contai_nav ul li:hover {
-    background-color: rgb(156, 240, 240);
-}
-
-.contai_nav_hide .icon_toggle{
-    display: none;
-}
 
 
 
