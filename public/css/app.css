@@ -69,12 +69,15 @@ input.participantId {
   background-color: #00bcd4; }
 
 .contai_nav ul li:hover {
+  color: #000; }
+
+.contai_nav ul li:hover {
   background-color: #9cf0f0; }
 
 .contai_nav_hide .icon_toggle {
   display: none; }
 
-.contai_content_list li a {
+.contai_content_list a {
   text-decoration: none;
   color: #000; }
 
@@ -121,7 +124,7 @@ input.participantId {
 
 .contai_content .categories_voices {
   list-style-type: none;
-  background-color: #ffffff; }
+  background-color: #f8f9fa; }
 
 .contai_content .text_input {
   box-sizing: border-box; }

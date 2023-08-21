@@ -18,7 +18,6 @@ const ProductRouter = express.Router();
 const VoicesRouter = express.Router();
 
 
-
 AuthRouter.get('/login', AuthController.login)
 AuthRouter.post('/login', AuthController.DoLogin)
 AuthRouter.get('/logout',(req, res) => {
@@ -27,8 +26,8 @@ AuthRouter.get('/logout',(req, res) => {
 });
 
 
-StudioRouter.get('/', CheckLoggedIn, StudioController.index)//CheckLoggedIn
-StudioRouter.get('/multiple-voice', CheckLoggedIn, StudioController.mulitpleVoice)//CheckLoggedIn
+StudioRouter.get('/', StudioController.index)//CheckLoggedIn
+StudioRouter.get('/multiple-voice', StudioController.mulitpleVoice)//CheckLoggedIn
 
 CheckIPRouter.get('/', CheckIPAPIController.check);
 
