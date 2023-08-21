@@ -22,6 +22,7 @@ AuthRouter.post('/refresh', AuthAPIController.refreshToken)
 CheckIPRouter.get('/', CheckIPAPIController.check);
 
 CovertTextRouter.post("/", isAuth, ConvertTextAPIController.convert)
+CovertTextRouter.post("/public", AuthMiddle.hasAPIKey, ConvertTextAPIController.convert2)
 CovertTextRouter.post("/conversation", CheckLoggedIn, ConvertTextAPIController.convertMultipleVoice)
 
 GanerateRouter.post("/", isAuth, GanerateController.send_AI)

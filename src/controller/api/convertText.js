@@ -2,7 +2,7 @@ const {ConvertTextModel} = require('../../model/convertText')
 const { ResponseSuccess, ResponseFail } = require('../../helper/response')
 const { v4: uuidv4 } = require('uuid');
 const { voices } = require('../../data/voices');
-const { generateConversation } = require('../../services/converter');
+const { generateConversation, generateFile } = require('../../services/converter');
 
 // const { OpenAI } = require('../services/OpenAI')
 
@@ -62,6 +62,34 @@ const ConvertTextAPIController = {
                 return ResponseFail(res, "convert is unsuccess!")
             }
             return ResponseSuccess(res,"", data)
+        }
+        return ResponseFail(res, "request not accept")
+    },
+    convert2: async (req, res) => {
+        let input = {
+            voiceId: req.body.voiceId,
+            content: req.body.text
+        }
+        if (req.body.speed) {
+            input.speed = req.body.speed
+        }
+        if (req.body.volumn) {
+            input.volumn = req.body.volumn
+        }
+        if(input.content.length > 5000){
+            return ResponseFail(res, "max length < 5000")
+        }
+        if(input.content.length < 1){
+            return ResponseFail(res, "min length > 0")
+        }
+        if(voices.includes(input.voiceId)){
+            try {
+                var fileName = await generateFile(input.voiceId, input.content)
+                let fullUrl = req.protocol + '://' + req.get('host');
+                return ResponseSuccess(res,"", fullUrl+"/"+fileName)
+            } catch {
+            }
+            return ResponseFail(res, "convert is failed!")
         }
         return ResponseFail(res, "request not accept")
     },
