@@ -46,9 +46,48 @@ input.participantId {
   width: fit-content;
   border-bottom: 1px solid #b8b8b8; }
 
+.contai_nav {
+  width: 280px;
+  transition: width 0.1s linear;
+  position: relative;
+  padding: 16px; }
+
+.contai_nav_hide {
+  padding: 0px !important;
+  width: 0px;
+  transition: all 0.1s linear;
+  padding: 0px !important; }
+
+.logo {
+  color: #00bcd4; }
+
+.contai_nav ul li {
+  cursor: pointer; }
+
+.contai_nav ul li.active_nav {
+  color: white;
+  background-color: #00bcd4; }
+
+.contai_nav ul li:hover {
+  background-color: #9cf0f0; }
+
+.contai_nav_hide .icon_toggle {
+  display: none; }
+
 .contai_content_list li a {
   text-decoration: none;
   color: #000; }
+
+.contai_nav .icon_bar {
+  position: absolute;
+  top: 20px;
+  left: calc(100% + 10px);
+  padding: 10px;
+  background-color: white;
+  border-radius: 50%;
+  width: fit-content;
+  cursor: pointer;
+  z-index: 999; }
 
 * {
   box-sizing: border-box; }
@@ -61,27 +100,16 @@ input.participantId {
   box-sizing: border-box;
   width: calc(100% - 280px);
   height: 100vh;
-  transition: width 0.2s linear;
+  transition: all 0.1s linear;
   background-color: #e8e7e7;
   overflow-y: scroll; }
 
 .contai_content_full {
-  transition: width  0.2s linear;
+  transition: all  0.1s linear;
   width: 100%; }
 
 .contai_content_full .top_content {
   margin-left: 50px; }
-
-.contai_content_full .icon_bar {
-  box-sizing: border-box;
-  display: block !important;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  padding: 10px;
-  background-color: whitesmoke;
-  border-radius: 50%;
-  cursor: pointer; }
 
 .edit_voices {
   position: relative; }
@@ -168,32 +196,6 @@ input.participantId {
 
 audio::-webkit-media-controls-panel {
   background-color: #e8e7e7; }
-
-.contai_nav {
-  width: 280px;
-  transition: width 0.2s linear; }
-
-.contai_nav_hide {
-  display: none;
-  padding: 0px !important;
-  width: 0px;
-  transition: width 0.2s linear; }
-
-.logo {
-  color: #00bcd4; }
-
-.contai_nav ul li {
-  cursor: pointer; }
-
-.contai_nav ul li.active_nav {
-  color: white;
-  background-color: #00bcd4; }
-
-.contai_nav ul li:hover {
-  background-color: #9cf0f0; }
-
-.contai_nav_hide .icon_toggle {
-  display: none; }
 
 .popup_view {
   width: 100% !important;

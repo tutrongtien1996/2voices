@@ -1,6 +1,5 @@
 
     <div id="content_wrapper" class="contai_content p-2  position-relative">
-        <div class="icon_bar d-none"><i class="fa-solid fa-bars" style="font-size: 22px"></i></div>
         <div class="bg-light rounded-2 p-2 d-flex top_content">
             <div>
                 <input type="file" id="fileText" class="d-none"/>
@@ -63,44 +62,9 @@
                 </div>
             </div>
         </div>
-        <div class="px-2 pt-3"> 
-            <div class="contai_audio">
-                <audio class="w-100" controls="true">
-                    <source src="#"  type="audio/mp3">
-                </audio>
-            </div>
-        </div>
-        <div class="row gx-0 mt-3 d-flex justify-content-end filter_check">
-            <div class="col p-1">
-                <div><input type="text"  placeholder="Nhập tiêu đề"></div>
-            </div>
-            <div class="col p-1">
-                <div><input type="text"  placeholder="trạng thái"></div>
-            </div>
-           <div class="col p-1">
-                <div><input type="text"  placeholder="Bắc đầu"></div>
-            </div>
-            <div class="col p-1">
-                <div><input type="text"   placeholder="Ngày kết thúc"></div>
-            </div>
-        </div>
-        <div id="table_product" class="mt-3 contai_table">
-            <table class="">
-                <thead>
-                    <tr>
-                        <th class="p-2 py-3"><input type="checkbox"></th>
-                        <th><div class="col_title">Tiêu đề</div></th>
-                        <th><div class="col_chars">Ký tự</div></th>
-                        <th><div class="col_date">Thời gian</div></th>
-                        <th><div class="col_status">Trạng thái</div></th>
-                        <th><div class="col_voices">Giọng đọc</div></th>
-                        <th><div class="col_action">Thành công</div></th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+        {{> studio/audio}}
+        {{> studio/optionFilter}}
+        {{> studio/listProduct}}
     </div>
 
 
@@ -150,4 +114,3 @@
 <script src="/public/clientHandle/render/voices.js" type="module"></script>
 <script src="/public/clientHandle/render/products.js" type="module"></script>
 <script src="/public/clientHandle/index.js" type="module"></script>
-<script src="/public/css/home.js"></script>
