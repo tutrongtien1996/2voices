@@ -1,5 +1,6 @@
 import { Repository } from "./data/reponsitory.js";
 import { listVoices } from "./data/voicesList.js";
+import { coutChar } from "./products/countChar.js";
 
 import { addlistSpeech } from "./products/addProduct.js";
 import readTextFile from "./helper/readFileText.js";
@@ -76,7 +77,7 @@ function resetButton(status){
         convertBtn.disabled = true
     }
     if (status == 0) {
-        if (text.value.length < 1 || text.value.length > 3000) {
+        if (text.value.length < 1 || text.value.length > 5000) {
             convertBtn.disabled = true
         } else {
             convertBtn.disabled = false
@@ -102,6 +103,7 @@ fileTextUpload.onchange = async (event) => {
         text.value = "File tải lên lỗi, vui lòng tải file theo đúng định dạng .txt .xlsx, .xls, or .csv"
     }
 }
+
 
 
 

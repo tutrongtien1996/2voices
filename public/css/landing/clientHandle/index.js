@@ -82,7 +82,7 @@ function resetButton(status){
         downloadBtn.style.display = "inline"
     }
     if (status == 0) {
-        if (text.value.length < 1 || text.value.length > 10000) {
+        if (text.value.length < 1 || text.value.length > 5000) {
             convertBtn.disabled = true
         } else {
             convertBtn.disabled = false
