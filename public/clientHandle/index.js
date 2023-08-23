@@ -3,23 +3,28 @@ import { listVoices } from "./data/voicesList.js";
 import { coutChar } from "./products/countChar.js";
 
 import { addlistSpeech } from "./products/addProduct.js";
+import readTextFile from "./helper/readFileText.js";
 
 let convertBtn = document.querySelector("#convert");
 let text = document.querySelector("#text");
 let title = document.querySelector("#title");
 let textPrompt = document.querySelector("#text-prompt");
 let askAIButton = document.querySelector("#askAI");
-let coutCharElement = document.querySelector('#coutCharText')
-let cout = 0;
+const numberCurrent = document.querySelector("#numberCurrent")
+const fileTextUpload = document.querySelector('#fileText')
 listVoices()
+
 
 if(convertBtn){
     convertBtn.disabled = true
-    text.onkeyup = (e) => {
-        cout = parseInt(coutChar(e))
-        coutCharElement.innerText = cout;
-        resetButton(0) }
-    text.onchange = () => { resetButton(0) }
+    text.onkeyup = () => {
+        resetButton(0)
+        numberCurrent.innerText = handleLengthText(text)
+    }
+    text.onchange = (e) => { 
+        resetButton(0)
+        numberCurrent.innerText = handleLengthText(text)
+    }
     
     convertBtn.onclick = async () => {
         let voiceSelector = document.querySelector(".categories_voices .active");
@@ -83,6 +88,20 @@ function resetButton(status){
 
 function showButtonSuccess(){
     document.querySelector('.success_convert').classList.add('d-none')
+}
+
+const handleLengthText = (e) => {
+    return e.value.length
+}
+
+fileTextUpload.onchange = async (event) => {
+    try {
+      const content = await readTextFile(event);
+      text.value = content;
+      numberCurrent.innerText = handleLengthText(text)
+    } catch (error) {
+        text.value = "File tải lên lỗi, vui lòng tải file theo đúng định dạng .txt .xlsx, .xls, or .csv"
+    }
 }
 
 

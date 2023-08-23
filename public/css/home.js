@@ -1,5 +1,10 @@
+import handleActiveNav from "../clientHandle/NavBar/menuActive.js";
+
+handleActiveNav()
+
 let hide = document.querySelector(".icon_arrow");
 let show = document.querySelector(".icon_bar");
+
 
 hideNav()
 showNav()
