@@ -1,0 +1,21 @@
+<div class="border-bottom pb-2 pt-2 text_input">
+    <textarea class="w-100 shadow-none p-2" id="text" placeholder="Nhập văn bản tại đây..."  rows="13"  style=" outline: none; border:none"></textarea>
+</div>
+<div class="p-2">
+    <span>Bôi đen để nghe thử</span>
+    <div class="d-flex justify-content-between">
+        <div><button type="button" class="btn btn-outline-secondary">Nghe thử</button></div>
+        <div class="d-flex align-items-center"><span id="numberCurrent">0</span><span>/5000</span></div>
+        <div class="d-flex">
+            <div class='loading loading_convert me-2 d-none'>
+                <button>Đang xử lý...
+                    <svg>
+                    <rect x="1" y="1"></rect>
+                    </svg>
+                </button>   
+            </div>
+            <div class="success_convert d-none"><button type="button" class="btn btn-outline-success">Đã xong!</button></div>
+            <div><button type="button" class="btn btn-info text-white" id="convert">Chuyển đổi</button></div>
+        </div>
+    </div>
+</div>
