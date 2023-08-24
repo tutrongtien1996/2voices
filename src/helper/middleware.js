@@ -1,4 +1,4 @@
-const {ResponseSuccess, ResponseFail} = require('../helper/response');
+const { ResponseFail} = require('../helper/response');
 const { AuthModel } = require('../model/Auth');
 const { jwtHandle } = require('./handlePackage');
 
@@ -21,7 +21,6 @@ const AuthMiddle = {
 
         const users = await AuthModel.getUser(verified.payload.username);
         req.user = users[0];
-        console.log(users)
         return next();
     }
 }

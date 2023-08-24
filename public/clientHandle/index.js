@@ -1,6 +1,5 @@
 import { Repository } from "./data/reponsitory.js";
 import { listVoices } from "./data/voicesList.js";
-import { coutChar } from "./products/countChar.js";
 
 import { addlistSpeech } from "./products/addProduct.js";
 import readTextFile from "./helper/readFileText.js";
